@@ -13,17 +13,25 @@ public class AudioPlayer : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        PlayTheme(SceneManager.GetActiveScene());
     }
 
     private void OnDisable()
     {
+        // unsubscribe event
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainMenu")
+        PlayTheme(scene);
+    }
+
+    private void PlayTheme(Scene scene)
+    {
+        if (scene.name == "ProtasScene")
         {
+            Debug.Log("I'm in ProtasScene");
             // play main menu theme
             audioSource.clip = audioClips[0];
             audioSource.Play();
