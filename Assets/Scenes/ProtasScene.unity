@@ -298,8 +298,8 @@ GameObject:
   - component: {fileID: 543783672}
   - component: {fileID: 543783671}
   - component: {fileID: 543783670}
-  - component: {fileID: 543783674}
   - component: {fileID: 543783675}
+  - component: {fileID: 543783674}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: 0}
+  m_Actions: {fileID: -944628639613478452, guid: 2d621b76a35408b4a814a2a8233bd3b1, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &572390339

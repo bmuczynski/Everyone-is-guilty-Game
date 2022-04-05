@@ -2,35 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-// controller for grid movement system
+// controller for grid movement system (used New Unity Input System - PlayerInput component on Player)
 public class MovementController : MonoBehaviour
 {
     private bool isMoving;
     private Vector3 targetPosition;
+    private PlayerInput playerInput;
 
     // weird movement when assigning a value
     [SerializeField]
     private float timeToMove;
 
-    void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.W) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.forward));
-        }
-        if (Input.GetKeyDown(KeyCode.S) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.back));
-        }
-        if (Input.GetKeyDown(KeyCode.D) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.right));
-        }
-        if (Input.GetKeyDown(KeyCode.A) && !isMoving)
-        {
-            StartCoroutine(MovePlayer(Vector3.left));
-        }
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        Debug.Log(playerInput.devices);
+    }
+
+    public void OnMovement(InputValue input)
+    {
+        Vector3 movement = input.Get<Vector3>();
+        if(!isMoving) StartCoroutine(MovePlayer(movement));
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
