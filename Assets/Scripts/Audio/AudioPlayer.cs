@@ -10,7 +10,7 @@ public class AudioPlayer : MonoBehaviour
     private AudioSource audioSource;
     
     void Start()
-    {s
+    {
         audioSource = GetComponent<AudioSource>();
         // subscribe event
         SceneManager.sceneLoaded += OnSceneLoaded;
