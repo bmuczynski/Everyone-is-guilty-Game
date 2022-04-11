@@ -10,6 +10,7 @@ public class MovementController : MonoBehaviour
     private Animator animator;
     private float timeToMove;
     private bool isMoving;
+    private Vector3 movement;
 
     private void Awake()
     {
@@ -18,11 +19,23 @@ public class MovementController : MonoBehaviour
 
     public void OnMovement(InputValue input)
     {
-        Vector3 movement = input.Get<Vector3>();
+
+        movement = input.Get<Vector3>();
+        if(!isMoving)
+        {
+            StartCoroutine(Move(movement));
+        }
+        //if (!isMoving) StartCoroutine(MovePlayer(movement));
+    }
+
+    private IEnumerator Move(Vector3 movement)
+    {
+        isMoving = true;
         animator.Play("Slow Run");
         transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, movement, 2.0f, 0.0f));
         transform.Translate(movement, Space.World);
-        //if (!isMoving) StartCoroutine(MovePlayer(movement));
+        isMoving = false;
+        yield return null;
     }
 
     private IEnumerator MovePlayer(Vector3 direction)

@@ -13,8 +13,6 @@ public class TypeWriter : MonoBehaviour
     private void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-        //StartCoroutine(ShowText());
-
         TypeWriteText("hello i'm simple text just to present this option");
     }
 

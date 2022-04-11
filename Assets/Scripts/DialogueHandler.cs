@@ -7,7 +7,18 @@ public class DialogueHandler : MonoBehaviour
 {
     public TextMeshProUGUI speakerName;
     public TextMeshProUGUI contentText;
+    public Conversation conversation;
     private GameObject speaker;
+
+    private void Start()
+    {
+        
+    }
+
+    public void SetConversation(Conversation conversation)
+    {
+        this.conversation = conversation;
+    }
 
     public GameObject Speaker
     {
