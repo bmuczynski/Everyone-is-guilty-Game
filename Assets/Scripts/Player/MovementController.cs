@@ -26,18 +26,11 @@ public class MovementController : MonoBehaviour
 
     private void OnDisable() => playerInput.Player.Movement.performed -= Move;
 
-    private void Move(InputAction.CallbackContext context)
-    {
-        Debug.Log("Click, click");
-        StartCoroutine(WaitForMove());
-    }
-
+    private void Move(InputAction.CallbackContext context) => StartCoroutine(WaitForMove());
+    
     private void StopPlayer()
     {
-        if (agent.velocity == Vector3.zero)
-        {
-            animator.SetBool("isMoving", false);
-        }
+        if (agent.velocity == Vector3.zero) animator.SetBool("isMoving", false);
     }
 
     private IEnumerator WaitForMove()
@@ -49,6 +42,5 @@ public class MovementController : MonoBehaviour
             animator.SetBool("isMoving", true);
             agent.SetDestination(hit.point);
         }
-
     }
 }

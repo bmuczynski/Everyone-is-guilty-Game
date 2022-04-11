@@ -30,14 +30,14 @@ public class AudioPlayer : MonoBehaviour
 
     private void PlayTheme(Scene scene)
     {
-        if (scene.name == "ProtasScene" && audioClips != null)
+        if (scene.name == "ProtasScene" && audioClips.Length != 0)
         {
             Debug.Log("I'm in ProtasScene");
             // play main menu theme
             audioSource.clip = audioClips[0];
             audioSource.Play();
         }
-        if (scene.name == "GameWindow" && audioClips != null)
+        if (scene.name == "GameWindow" && audioClips.Length != 0)
         {
             // play game ambience
             audioSource.clip = audioClips[1];
