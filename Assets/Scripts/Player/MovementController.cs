@@ -3,58 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
-// controller for grid movement system (used New Unity Input System - PlayerInput component on Player)
+// controller for grid movement system (used New Unity Input System)
 public class MovementController : MonoBehaviour
 {
     private Animator animator;
-    private float timeToMove;
-    private bool isMoving;
-    private Vector3 movement;
+    private PlayerInputActions playerInput;
+    private NavMeshAgent agent;
+    private float moveDelay = 0.5f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
+        playerInput = new PlayerInputActions();
+        playerInput.Player.Enable();
+        playerInput.Player.Movement.performed += Move;
     }
 
-    public void OnMovement(InputValue input)
-    {
+    private void Update() => StopPlayer();
 
-        movement = input.Get<Vector3>();
-        if(!isMoving)
+    private void OnDisable() => playerInput.Player.Movement.performed -= Move;
+
+    private void Move(InputAction.CallbackContext context)
+    {
+        Debug.Log("Click, click");
+        StartCoroutine(WaitForMove());
+    }
+
+    private void StopPlayer()
+    {
+        if (agent.velocity == Vector3.zero)
         {
-            StartCoroutine(Move(movement));
+            animator.SetBool("isMoving", false);
         }
-        //if (!isMoving) StartCoroutine(MovePlayer(movement));
     }
 
-    private IEnumerator Move(Vector3 movement)
+    private IEnumerator WaitForMove()
     {
-        isMoving = true;
-        animator.Play("Slow Run");
-        transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, movement, 2.0f, 0.0f));
-        transform.Translate(movement, Space.World);
-        isMoving = false;
-        yield return null;
-    }
-
-    private IEnumerator MovePlayer(Vector3 direction)
-    {
-        isMoving = true; // ustawienie flagi na true - porusza siê
-        float elapsedTime = 0.0f;
-        Vector3 targetPosition = transform.position + direction;
-        animator.SetBool("isMoving", true);
-        animator.PlayInFixedTime("Slow Run");
-
-        while (elapsedTime < timeToMove)
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit))
         {
-            transform.position = Vector3.Lerp(direction, transform.position, (elapsedTime / timeToMove));
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            yield return new WaitForSeconds(moveDelay);
+            animator.SetBool("isMoving", true);
+            agent.SetDestination(hit.point);
         }
 
-        transform.position = targetPosition;
-        animator.SetBool("isMoving", false);
-        isMoving = false;
     }
 }
