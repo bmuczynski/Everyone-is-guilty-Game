@@ -15,5 +15,5 @@ MonoBehaviour:
   lines:
   - npc: {fileID: 919132149155446097, guid: b0e82b069df8abb4d8892e201f3b06dd, type: 3}
     text: eluwina
-  - npc: {fileID: 0}
+  - npc: {fileID: 919132149155446097, guid: 647c75f41c6130249a088a37637a1cff, type: 3}
     text: siemka
