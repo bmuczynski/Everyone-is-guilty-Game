@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
 
     private void OnDisable()
     {
-        index = 0;
+        index = 0; // zero the index variable on disabling the Dialogue UI
     }
 
     // handling "Space" input for going to the next line
@@ -49,15 +49,13 @@ public class DialogueManager : MonoBehaviour
     {
         if(HasNextLine())
         {
+            StopAllCoroutines();
             ClearTextbox();
+            dialogueContent.text = currentLine.text;
             ManageDialogs();
             index++;
         }
-        else
-        {
-            Debug.LogWarning("There's no such line in this dialogue");
-        }
-
+        else Debug.LogWarning("There's no such line in this dialogue");
     }
 
     private bool HasNextLine()
@@ -93,6 +91,7 @@ public class DialogueManager : MonoBehaviour
     // coroutine to make TypeWrite effect
     public IEnumerator TypeWrite (string fullText)
     {
+        ClearTextbox();
         for (int i = 0; i < fullText.Length; i++)
         {
             dialogueContent.text += fullText[i];
