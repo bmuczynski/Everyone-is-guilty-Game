@@ -15,7 +15,6 @@ public class MovementController : MonoBehaviour
 
     [SerializeField]
     private GameObject movementMarker;
-    private GameObject markers;
 
     private void Awake()
     {
@@ -53,6 +52,7 @@ public class MovementController : MonoBehaviour
     private IEnumerator WaitForMove()
     {
         RaycastHit hit;
+
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit))
         {
             DestroyAllGO("Marker");
