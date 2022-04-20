@@ -23,7 +23,7 @@ public class ZombieMovement : MonoBehaviour
     public event Action Speed; // -> animationStateController
     public event Action Attack; // -> animationStateController
     
-    public PlayerHealthMenager playerHealthMenager;
+    //public PlayerHealthMenager playerHealthMenager;
 
     AudioSource ZombieSound;
 
@@ -102,7 +102,7 @@ public class ZombieMovement : MonoBehaviour
         {
             Debug.Log("robie korutyne");
             yield return new WaitForSeconds(1.5f);
-            playerHealthMenager.DealDamagePlayer();
+            //playerHealthMenager.DealDamagePlayer();
            
         }
         coroutine = true;
