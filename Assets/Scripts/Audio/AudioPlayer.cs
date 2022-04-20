@@ -12,23 +12,32 @@ public class AudioPlayer : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        // subscribe event
         SceneManager.sceneLoaded += OnSceneLoaded;
+        if(audioClips != null) PlayTheme(SceneManager.GetActiveScene());
     }
 
     private void OnDisable()
     {
+        // unsubscribe event
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "MainMenu")
+        if (audioClips != null) PlayTheme(scene);
+    }
+
+    private void PlayTheme(Scene scene)
+    {
+        if (scene.name == "ProtasScene" && audioClips.Length != 0)
         {
+            Debug.Log("I'm in ProtasScene");
             // play main menu theme
             audioSource.clip = audioClips[0];
             audioSource.Play();
         }
-        if (scene.name == "GameWindow")
+        if (scene.name == "GameWindow" && audioClips.Length != 0)
         {
             // play game ambience
             audioSource.clip = audioClips[1];
