@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MainCharacter : Character
 {
+    public event Action<float> onHealthChanged;
     private PlayerData playerData;
 
     private void Start()
@@ -29,7 +31,7 @@ public class MainCharacter : Character
     public override void GetDamage(float dmgPoints)
     {
         healthPoints -= dmgPoints;
-
+        onHealthChanged(healthPoints);
         if(CheckIfDied())
         {
             Die();
