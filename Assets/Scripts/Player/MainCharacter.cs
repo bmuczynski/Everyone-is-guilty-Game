@@ -14,6 +14,7 @@ public class MainCharacter : Character
     public MainCharacter()
     {
         healthPoints = playerData.healthPoints;
+        maxHealthPoints = healthPoints;
         dodgeChance = playerData.dodgeChance;
         accuracy = playerData.accuracy;
         attack = 10.0f; // placeholder - explained in parent class
@@ -28,6 +29,11 @@ public class MainCharacter : Character
     public override void GetDamage(float dmgPoints)
     {
         healthPoints -= dmgPoints;
+
+        if(CheckIfDied())
+        {
+            Die();
+        }
         // here handle all the stuff that's happening on getting hit
     }
 }
