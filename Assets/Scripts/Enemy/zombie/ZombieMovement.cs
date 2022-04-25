@@ -100,7 +100,6 @@ public class ZombieMovement : MonoBehaviour
         
             while (InRange && GetComponent<ZombieHealth>().dead == false)
         {
-            Debug.Log("robie korutyne");
             yield return new WaitForSeconds(1.5f);
             //playerHealthMenager.DealDamagePlayer();
            

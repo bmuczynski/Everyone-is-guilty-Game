@@ -14,8 +14,8 @@ public class Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hp.text = "Health :"+ "0";
-        accuracy.text = "Accuracy :"+"0";
-        dodgeChance.text = "Dodge Chance :"+"0";
+        //hp.text = "Health :"+ "0";
+        //accuracy.text = "Accuracy :"+"0";
+        //dodgeChance.text = "Dodge Chance :"+"0";
     }
 }

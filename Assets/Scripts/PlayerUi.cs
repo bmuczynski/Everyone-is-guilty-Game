@@ -19,13 +19,15 @@ public class PlayerUi : MonoBehaviour
         hpText = GameObject.Find("hp").GetComponent<TextMeshProUGUI>();
         accuracyText = GameObject.Find("accuracy").GetComponent<TextMeshProUGUI>();
         dodgeText = GameObject.Find("dodgeChance").GetComponent<TextMeshProUGUI>();
+
         healthBar.maxValue = player.maxHealthPoints;
+        healthBar.value = healthBar.maxValue;
         player.onHealthChanged += UpdateHealthBar;
+
         hpText.text = player.maxHealthPoints.ToString();
         accuracyText.text = player.accuracy.ToString();
         dodgeText.text = player.dodgeChance.ToString();
     }
-
 
     private void OnDisable()
     {

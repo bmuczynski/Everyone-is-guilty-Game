@@ -6,20 +6,17 @@ using System;
 public class MainCharacter : Character
 {
     public event Action<float> onHealthChanged;
-    private PlayerData playerData;
+    public PlayerData playerData;
 
     private void Start()
-    {
-        playerData = gameObject.GetComponent<PlayerData>(); // getting reference to Data placed on object
-    }
-
-    public MainCharacter()
     {
         healthPoints = playerData.healthPoints;
         maxHealthPoints = healthPoints;
         dodgeChance = playerData.dodgeChance;
         accuracy = playerData.accuracy;
-        attack = 10.0f; // placeholder - explained in parent class
+        attack = 10.0f;
+
+        Debug.Log("HP: " + maxHealthPoints + " \nDodge: " + dodgeChance);
     }
 
     public override void Attack(Character character)
