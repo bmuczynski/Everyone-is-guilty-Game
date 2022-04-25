@@ -8,7 +8,7 @@ public class MainCharacter : Character
     public event Action<float> onHealthChanged;
     public PlayerData playerData;
 
-    private void Start()
+    private void Awake()
     {
         healthPoints = playerData.healthPoints;
         maxHealthPoints = healthPoints;

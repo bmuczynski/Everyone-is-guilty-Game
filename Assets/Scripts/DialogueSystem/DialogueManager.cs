@@ -7,13 +7,13 @@ using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
-    public event Action onDialogue;
-
     [SerializeField]
     private Dialogue dialogue;
 
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
+
+    
 
     private PlayerInputActions playerInputActions;
 
@@ -37,6 +37,7 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         SetDialogue(dialogue);
+        ManageDialogs();
     }
 
     private void OnDisable()
@@ -50,12 +51,21 @@ public class DialogueManager : MonoBehaviour
         if(HasNextLine())
         {
             StopAllCoroutines();
-            ClearTextbox();
             dialogueContent.text = currentLine.text;
             ManageDialogs();
             index++;
         }
+        else if(!HasNextLine())
+        {
+
+        }
         else Debug.LogWarning("There's no such line in this dialogue");
+    }
+
+    private void ShowQuestion()
+    {
+        dialogueContent.text = dialogue.question.text;
+
     }
 
     private bool HasNextLine()
@@ -68,7 +78,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // dialogue is set on the interaction with NPC
-    private void SetDialogue(Dialogue dialogue)
+    public void SetDialogue(Dialogue dialogue)
     {
         this.dialogue = dialogue;
     }

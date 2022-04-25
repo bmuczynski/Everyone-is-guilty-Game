@@ -24,9 +24,9 @@ public class PlayerUi : MonoBehaviour
         healthBar.value = healthBar.maxValue;
         player.onHealthChanged += UpdateHealthBar;
 
-        hpText.text = player.maxHealthPoints.ToString();
-        accuracyText.text = player.accuracy.ToString();
-        dodgeText.text = player.dodgeChance.ToString();
+        hpText.text = "Health points: " + player.maxHealthPoints.ToString();
+        accuracyText.text = "Accuracy: " + player.accuracy.ToString();
+        dodgeText.text = "Dodge: " + player.dodgeChance.ToString();
     }
 
     private void OnDisable()
