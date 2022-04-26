@@ -17,6 +17,6 @@ MonoBehaviour:
   - text: By the road
     dialogue: {fileID: 11400000, guid: 4c5e695ff5bab604ea0a66950c0a1243, type: 2}
   - text: By the bike
-    dialogue: {fileID: 0}
+    dialogue: {fileID: 11400000, guid: 4c5e695ff5bab604ea0a66950c0a1243, type: 2}
   - text: By the car
-    dialogue: {fileID: 0}
+    dialogue: {fileID: 11400000, guid: 4c5e695ff5bab604ea0a66950c0a1243, type: 2}

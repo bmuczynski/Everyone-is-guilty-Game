@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
 {
     [SerializeField]
     private Dialogue dialogue;
+    private QuestionController questionController;
 
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     private PlayerInputActions playerInputActions;
 
     private bool canGoToNextLine;
+    private bool questionAnswered;
     private Line currentLine;
 
     private int index = 0;
@@ -25,10 +27,12 @@ public class DialogueManager : MonoBehaviour
         SetDialogue(dialogue);
         characterNameText = GameObject.Find("CharacterName").GetComponent<TextMeshProUGUI>();
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
+        questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Enable();
         playerInputActions.UI.NextLine.performed += GoToNextLine;
+
     }
 
     // will set dialogue to dialogue manager on on enabling the UI canvas
@@ -36,6 +40,7 @@ public class DialogueManager : MonoBehaviour
     {
         SetDialogue(dialogue);
         ManageDialogs();
+        questionAnswered = false;
     }
 
     private void OnDisable()
@@ -48,14 +53,19 @@ public class DialogueManager : MonoBehaviour
     {
         if(HasNextLine()) // if there is another line after current line
         {
+            questionAnswered = false;
             StopAllCoroutines();
             dialogueContent.text = currentLine.text;
             ManageDialogs();
         }
-        else if(!HasNextLine() && dialogue.question != null) // if there ain't another line after current line
+        else if(!HasNextLine() && dialogue.question != null && questionAnswered != true) // if there ain't another line after current line
         {
-            ManageQuestions();
+            StopAllCoroutines();
+            characterNameText.text = "";
+            ClearTextbox();
             dialogueContent.text = dialogue.question.text;
+            questionController.Change(dialogue.question);
+            questionAnswered = true;
         }
         else Debug.LogWarning("There's no such line in this dialogue");
     }
@@ -87,11 +97,6 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeWrite(currentLine.text));
         index++;
-    }
-
-    private void ManageQuestions()
-    {
-
     }
 
     // clear content of textBoxes

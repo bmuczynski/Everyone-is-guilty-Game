@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 829923811991136146}
   - component: {fileID: 829923811991136141}
   - component: {fileID: 829923811991136140}
+  - component: {fileID: 65068909739030904}
   m_Layer: 5
   m_Name: ChoiceButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &829923811991136143
 RectTransform:
   m_ObjectHideFlags: 0
@@ -121,6 +122,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &65068909739030904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829923811991136142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79909b27ad9c01d42b43edd83c2cb82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  choice:
+    text: 
+    dialogue: {fileID: 0}
 --- !u!1 &829923812621019467
 GameObject:
   m_ObjectHideFlags: 0
