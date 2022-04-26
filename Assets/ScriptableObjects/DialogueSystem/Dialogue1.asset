@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - npc: {fileID: 919132149155446097, guid: b0e82b069df8abb4d8892e201f3b06dd, type: 3}
-    text: eluwina
+    text: 
   - npc: {fileID: 919132149155446097, guid: 647c75f41c6130249a088a37637a1cff, type: 3}
     text: siemka
-  - npc: {fileID: 919132149155446097, guid: 647c75f41c6130249a088a37637a1cff, type: 3}
+  - npc: {fileID: 919132149155446097, guid: b0e82b069df8abb4d8892e201f3b06dd, type: 3}
     text: siemka
   question: {fileID: 11400000, guid: c5a1116879ea07f4393ff3610be6c4a0, type: 2}

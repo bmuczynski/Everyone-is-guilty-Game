@@ -13,8 +13,6 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
 
-    
-
     private PlayerInputActions playerInputActions;
 
     private bool canGoToNextLine;
@@ -48,16 +46,16 @@ public class DialogueManager : MonoBehaviour
     // handling "Space" input for going to the next line
     private void GoToNextLine(InputAction.CallbackContext context)
     {
-        if(HasNextLine())
+        if(HasNextLine()) // if there is another line after current line
         {
             StopAllCoroutines();
             dialogueContent.text = currentLine.text;
             ManageDialogs();
-            index++;
         }
-        else if(!HasNextLine())
+        else if(!HasNextLine() && dialogue.question != null) // if there ain't another line after current line
         {
-
+            ManageQuestions();
+            dialogueContent.text = dialogue.question.text;
         }
         else Debug.LogWarning("There's no such line in this dialogue");
     }
@@ -65,7 +63,6 @@ public class DialogueManager : MonoBehaviour
     private void ShowQuestion()
     {
         dialogueContent.text = dialogue.question.text;
-
     }
 
     private bool HasNextLine()
@@ -89,12 +86,17 @@ public class DialogueManager : MonoBehaviour
         characterNameText.text = currentLine.npc.name;
         StopAllCoroutines();
         StartCoroutine(TypeWrite(currentLine.text));
+        index++;
+    }
+
+    private void ManageQuestions()
+    {
+
     }
 
     // clear content of textBoxes
     private void ClearTextbox()
     {
-        characterNameText.text = "";
         dialogueContent.text = "";
     }
 
