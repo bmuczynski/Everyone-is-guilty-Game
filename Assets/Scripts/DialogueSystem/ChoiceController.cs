@@ -4,12 +4,18 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class ChoiceController : MonoBehaviour
 {
     public Choice choice;
+    private DialogueManager dialogueManager;
 
-    public event Action<Dialogue> onConversationChangeEvent;
+    private void Start()
+    {
+        dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();  
+        GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = choice.text;
+    }
 
     public static ChoiceController AddChoiceButton(Button choiceButtonTemplate, Choice choice, int index, Transform parent)
     {
@@ -27,13 +33,12 @@ public class ChoiceController : MonoBehaviour
         return choiceController;
     }
 
-    private void Start()
-    {
-        GetComponent<Button>().GetComponentInChildren<TextMeshProUGUI>().text = choice.text;
-    }
-
     public void MakeChoice()
     {
-        onConversationChangeEvent(choice.dialogue);
+        Debug.Log(gameObject.GetInstanceID());
+        if(choice.dialogue != null)
+        {
+            dialogueManager.StartDialogue(choice.dialogue);
+        }
     }
 }

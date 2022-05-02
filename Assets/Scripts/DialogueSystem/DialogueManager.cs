@@ -13,10 +13,10 @@ public class DialogueManager : MonoBehaviour
 
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
+    private GameObject dialoguePanel;
 
     private PlayerInputActions playerInputActions;
 
-    private bool canGoToNextLine;
     private bool questionAnswered;
     private Line currentLine;
 
@@ -24,7 +24,6 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
-        SetDialogue(dialogue);
         characterNameText = GameObject.Find("CharacterName").GetComponent<TextMeshProUGUI>();
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
         questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
@@ -32,14 +31,13 @@ public class DialogueManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Enable();
         playerInputActions.UI.NextLine.performed += GoToNextLine;
+        StartDialogue(dialogue);
 
     }
 
     // will set dialogue to dialogue manager on on enabling the UI canvas
     private void OnEnable()
     {
-        SetDialogue(dialogue);
-        ManageDialogs();
         questionAnswered = false;
     }
 
@@ -56,13 +54,13 @@ public class DialogueManager : MonoBehaviour
             questionAnswered = false;
             StopAllCoroutines();
             dialogueContent.text = currentLine.text;
-            ManageDialogs();
+            AdvanceLine();
         }
         else if(!HasNextLine() && dialogue.question != null && questionAnswered != true) // if there ain't another line after current line
         {
             StopAllCoroutines();
             characterNameText.text = "";
-            ClearTextbox();
+            dialogueContent.text = "";
             dialogueContent.text = dialogue.question.text;
             questionController.Change(dialogue.question);
             questionAnswered = true;
@@ -84,13 +82,17 @@ public class DialogueManager : MonoBehaviour
         else return true;
     }
 
-    // dialogue is set on the interaction with NPC
-    public void SetDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue)
     {
+        questionController.Hide();
+        index = 0;
+        Debug.Log(dialogue.lines[index].text);
         this.dialogue = dialogue;
+        AdvanceLine();
+
     }
 
-    private void ManageDialogs()
+    private void AdvanceLine()
     {
         currentLine = dialogue.lines[index];
         characterNameText.text = currentLine.npc.name;
@@ -99,16 +101,10 @@ public class DialogueManager : MonoBehaviour
         index++;
     }
 
-    // clear content of textBoxes
-    private void ClearTextbox()
-    {
-        dialogueContent.text = "";
-    }
-
     // coroutine to make TypeWrite effect
     public IEnumerator TypeWrite (string fullText)
     {
-        ClearTextbox();
+        dialogueContent.text = "";
         for (int i = 0; i < fullText.Length; i++)
         {
             dialogueContent.text += fullText[i];
