@@ -12,6 +12,11 @@ public class QuestionController : MonoBehaviour
 
     private List<ChoiceController> choiceControllers = new List<ChoiceController>();
 
+    private void Start()
+    {
+        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().OnDialogueEnd += Hide;
+    }
+
     private void Initialize()
     {
         questionText.text = question.text;

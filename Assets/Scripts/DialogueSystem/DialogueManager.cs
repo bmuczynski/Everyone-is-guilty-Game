@@ -17,13 +17,16 @@ public class DialogueManager : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
 
-    private bool questionAnswered;
     private Line currentLine;
 
     private int index = 0;
 
+    public event Action OnDialogueEnd;
+
     void Start()
     {
+        dialoguePanel = GameObject.Find("DialogPanel");
+        Debug.Log(dialoguePanel.GetInstanceID());
         characterNameText = GameObject.Find("CharacterName").GetComponent<TextMeshProUGUI>();
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
         questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
@@ -35,12 +38,6 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    // will set dialogue to dialogue manager on on enabling the UI canvas
-    private void OnEnable()
-    {
-        questionAnswered = false;
-    }
-
     private void OnDisable()
     {
         index = 0; // zero the index variable on disabling the Dialogue UI
@@ -49,28 +46,25 @@ public class DialogueManager : MonoBehaviour
     // handling "Space" input for going to the next line
     private void GoToNextLine(InputAction.CallbackContext context)
     {
-        if(HasNextLine()) // if there is another line after current line
+        if (HasNextLine()) // if there is another line after current line
         {
-            questionAnswered = false;
             StopAllCoroutines();
             dialogueContent.text = currentLine.text;
             AdvanceLine();
         }
-        else if(!HasNextLine() && dialogue.question != null && questionAnswered != true) // if there ain't another line after current line
+        else if (!HasNextLine() && dialogue.question != null) // if there ain't another line after current line
         {
             StopAllCoroutines();
             characterNameText.text = "";
             dialogueContent.text = "";
             dialogueContent.text = dialogue.question.text;
             questionController.Change(dialogue.question);
-            questionAnswered = true;
         }
-        else Debug.LogWarning("There's no such line in this dialogue");
-    }
-
-    private void ShowQuestion()
-    {
-        dialogueContent.text = dialogue.question.text;
+        else if (HasNextLine() && dialogue.question == null)
+        {
+            Debug.Log("Koniec dialogu");
+            EndDialogue();
+        }
     }
 
     private bool HasNextLine()
@@ -86,10 +80,16 @@ public class DialogueManager : MonoBehaviour
     {
         questionController.Hide();
         index = 0;
-        Debug.Log(dialogue.lines[index].text);
         this.dialogue = dialogue;
         AdvanceLine();
+    }
 
+    private void EndDialogue()
+    {
+        index = 0;
+        dialogue = null;
+        OnDialogueEnd();
+        dialoguePanel.SetActive(false);
     }
 
     private void AdvanceLine()
@@ -108,7 +108,8 @@ public class DialogueManager : MonoBehaviour
         for (int i = 0; i < fullText.Length; i++)
         {
             dialogueContent.text += fullText[i];
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.05f);
+            Debug.Log("Done");
         }
     }
 }

@@ -19,4 +19,4 @@ MonoBehaviour:
   - text: By the bike
     dialogue: {fileID: 11400000, guid: b6d6d5e67e4adc64d83e45ba354bef32, type: 2}
   - text: By the car
-    dialogue: {fileID: 11400000, guid: 4c5e695ff5bab604ea0a66950c0a1243, type: 2}
+    dialogue: {fileID: 11400000, guid: badc26e480f4dbb4989e1cfd4d9586e9, type: 2}
