@@ -10,7 +10,7 @@ public class AnimationStateController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        GetComponent<ZombieMovement>().PlayerInRange += ChangeAnimationToRun;
+        GetComponent<ZombieMovement>().PlayerInRange += ChangeAnimationToWalk;
         GetComponent<ZombieMovement>().Speed += ChangeAnimationToWalk;
         GetComponent<ZombieHealth>().PlayDeath += ChangeAnimationToDeath;
         GetComponent<ZombieMovement>().Attack += AttackAnim;

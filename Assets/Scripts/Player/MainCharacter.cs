@@ -8,6 +8,8 @@ public class MainCharacter : Character
     public event Action<float> onHealthChanged;
     public PlayerData playerData;
 
+    public event Action Dead; //->MovementController "Animacje"
+
     private void Awake()
     {
         healthPoints = playerData.healthPoints;
@@ -15,6 +17,7 @@ public class MainCharacter : Character
         dodgeChance = playerData.dodgeChance;
         accuracy = playerData.accuracy;
         attack = 10.0f;
+        
 
         Debug.Log("HP: " + maxHealthPoints + " \nDodge: " + dodgeChance);
     }
@@ -31,8 +34,9 @@ public class MainCharacter : Character
         onHealthChanged(healthPoints);
         if(CheckIfDied())
         {
-            Die();
+            Dead?.Invoke();
         }
         // here handle all the stuff that's happening on getting hit
     }
+    
 }

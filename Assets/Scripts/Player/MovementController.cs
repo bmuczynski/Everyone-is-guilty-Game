@@ -19,10 +19,20 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        //rajec
+        GetComponent<MainCharacter>().Dead += PlayDead ;
+        //rajec
         agent = GetComponent<NavMeshAgent>();
         playerInput = new PlayerInputActions();
         playerInput.Player.Enable();
         playerInput.Player.Movement.performed += Move;
+    }
+    // animator state change
+    void PlayDead()
+    {
+
+        animator.SetBool("IsDead", true);
+
     }
 
     private void Update() => StopPlayer();
