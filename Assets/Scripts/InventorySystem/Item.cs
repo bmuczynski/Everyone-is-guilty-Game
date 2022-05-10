@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Click");
-       Distance = Vector3.Distance(Player.transform.position,gameObject.transform.position);
+        Distance = Vector3.Distance(Player.transform.position,gameObject.transform.position);
         Debug.Log(Distance);
         if (Distance<=Range)
         {

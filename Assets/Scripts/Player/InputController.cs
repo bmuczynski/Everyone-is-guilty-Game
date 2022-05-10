@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
+
+    public event Action<ItemObject> OnItemPicked;
+
     private PlayerInputActions playerInput;
 
 
@@ -17,7 +21,19 @@ public class InputController : MonoBehaviour
 
     private void ManageMouseInput(InputAction.CallbackContext context)
     {
-        RaycastHit hit;
-        Ray mouseInput = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hitInfo;
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            GameObject go = hitInfo.collider.gameObject;
+            if (go.tag == "Item")
+            {
+                Debug.Log("tag");
+                ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
+                OnItemPicked(ob);
+
+            }
+        }
     }
 }

@@ -41,8 +41,11 @@ public class MovementController : MonoBehaviour
 
     private void OnDisable() => playerInput.Player.Movement.performed -= Move;
 
-    public void Move(InputAction.CallbackContext context) => StartCoroutine(WaitForMove());
-    
+    public void Move(InputAction.CallbackContext context)
+    {
+        //StartCoroutine(WaitForMove());
+    }
+
     private void StopPlayer()
     {
         if (agent.velocity == Vector3.zero) animator.SetBool("isMoving", false);
@@ -72,7 +75,7 @@ public class MovementController : MonoBehaviour
                 Quaternion.identity);
 
             yield return new WaitForSeconds(moveDelay);
-            Debug.Log(hit.point.GetType().Name);
+
             animator.SetBool("isMoving", true);
             agent.SetDestination(hit.point);
         }
