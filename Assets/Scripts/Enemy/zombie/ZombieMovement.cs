@@ -42,37 +42,24 @@ public class ZombieMovement : MonoBehaviour
 
         
     }
-   
-
-
-
-
-
     // Update is called once per frame
     void Update()
     {
-       
-        
-        if (SeePlayer >= 1 && GetComponent<ZombieHealth>().dead == false)
+        if (GetComponent<ZombieHealth>().dead == false &&
+            Vector3.Distance(gameObject.transform.position, gracz.transform.position) <= 5)
         {
 
+            InvokeRepeating("speed", 2, 3);
+            PlayerInRange?.Invoke();
             agent.SetDestination(gracz.transform.position); // idzie do gracza
 
             if (agent.remainingDistance <= 2.0f && agent.remainingDistance != 0)
             {
-                
                 InRange = true;
                 Attack?.Invoke();
                 if (coroutine)
                 StartCoroutine(MojaPierwszaKorutyna());
-                
-                
-                
-                
-
             }
-
-
             else if (agent.remainingDistance >= 2.5f && agent.remainingDistance != 0)
                 
             {
@@ -83,14 +70,6 @@ public class ZombieMovement : MonoBehaviour
                                      
                     Speed?.Invoke();
             }
-
-
-            
-            
-
-
-
-
         }
         
     }
@@ -107,33 +86,25 @@ public class ZombieMovement : MonoBehaviour
         coroutine = true;
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (GetComponent<ZombieHealth>().dead == false)
         {
-            
             if (other.CompareTag("Player"))
             {
                 SeePlayer = 1;
                 InvokeRepeating("speed", 2, 3);
                 PlayerInRange?.Invoke();
                 //ZombieSound.Play();
-
-
-
-
             }
         }
         
     }
-    
-
-
+    */
 
     void speed() // zombie staj¹ siêwolniejsze po kilku sekundach gonitwy 
-    
     {
-
         agent.speed--;
         agent.speed = Mathf.Clamp(agent.speed, 2, 5);
 
@@ -154,8 +125,6 @@ public class ZombieMovement : MonoBehaviour
 
     void CapsuleOff() // wy³¹cz capsule by mo¿na by³o chodziæ po zw³okach 
     {
-        
-
             if (GetComponent<ZombieHealth>().dead == true)
             {
 
@@ -165,24 +134,13 @@ public class ZombieMovement : MonoBehaviour
                 ZombieSound.Stop();
 
              }
-        
-
-
-
     }
    
 
 
     void NearTarget()
     {
-
-        
         Attack?.Invoke();
-        
-       
-
-
-
     }
 
 

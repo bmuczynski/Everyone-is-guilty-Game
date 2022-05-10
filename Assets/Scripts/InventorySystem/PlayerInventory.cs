@@ -9,14 +9,10 @@ public class PlayerInventory : MonoBehaviour
 
     public event UnityAction<ItemObject> ItemPicked;
 
-    private InputController inputController;
-
     private void Start()
     {
         GetComponent<InputController>().OnItemPicked += AddItemToInventory;
     }
-
-
 
     public void AddItemToInventory(ItemObject item)
     {

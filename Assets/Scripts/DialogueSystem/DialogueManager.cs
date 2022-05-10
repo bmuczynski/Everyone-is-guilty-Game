@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private Dialogue dialogue;
     private QuestionController questionController;
+    private InputController inputController;
 
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
@@ -26,15 +27,17 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         dialoguePanel = GameObject.Find("DialogPanel");
-        Debug.Log(dialoguePanel.GetInstanceID());
         characterNameText = GameObject.Find("CharacterName").GetComponent<TextMeshProUGUI>();
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
         questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
+        inputController = GameObject.Find("Player").GetComponent<InputController>();
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Enable();
         playerInputActions.UI.NextLine.performed += GoToNextLine;
-        StartDialogue(dialogue);
+        inputController.OnDialogueStarted += StartDialogue;
+
+        //gameObject.SetActive(false);
 
     }
 

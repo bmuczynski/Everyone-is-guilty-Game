@@ -14,22 +14,17 @@ public class MovementController : MonoBehaviour
     private float moveDelay = 0.5f;
 
     [SerializeField]
-    private LayerMask groundLayer;
-
-    [SerializeField]
     private GameObject movementMarker;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         //rajec
-        GetComponent<MainCharacter>().Dead += PlayDead ;
+        GetComponent<MainCharacter>().Dead += PlayDead;
         //rajec
         agent = GetComponent<NavMeshAgent>();
 
-        playerInput = new PlayerInputActions();
-        playerInput.Player.Enable();
-        playerInput.Player.Movement.performed += Move;
+        GetComponent<InputController>().OnGroundMovement += Move;
     }
     // animator state change
     void PlayDead()
@@ -37,18 +32,22 @@ public class MovementController : MonoBehaviour
         animator.SetBool("IsDead", true);
     }
 
-    private void Update() => StopPlayer();
-
-    private void OnDisable() => playerInput.Player.Movement.performed -= Move;
-
-    public void Move(InputAction.CallbackContext context)
+    private void Update()
     {
-        StartCoroutine(WaitForMove());
+        StopPlayer();
+    }
+
+    public void Move(RaycastHit hit)
+    {
+        StartCoroutine(WaitForMove(hit));
     }
 
     private void StopPlayer()
     {
-        if (agent.velocity == Vector3.zero) animator.SetBool("isMoving", false);
+        if (agent.velocity == Vector3.zero)
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 
     private void DestroyAllGO(string tag)
@@ -64,10 +63,8 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForMove()
+    private IEnumerator WaitForMove(RaycastHit hit)
     {
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit))
-        {
             DestroyAllGO("Marker");
             GameObject go = Instantiate(movementMarker,
                 hit.point,
@@ -77,6 +74,5 @@ public class MovementController : MonoBehaviour
 
             animator.SetBool("isMoving", true);
             agent.SetDestination(hit.point);
-        }
     }
 }

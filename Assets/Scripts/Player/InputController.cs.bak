@@ -6,14 +6,13 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    // events
-    public event Action<ItemObject> OnItemPicked;
-    public event Action<RaycastHit> OnGroundMovement;
-    public event Action OnEnemyClicked;
-    public event Action<Dialogue> OnDialogueStarted;
 
-    // Unity New Input System
+    public event Action<ItemObject> OnItemPicked;
+    public event Action OnGroundMovement;
+    public event Action OnEnemyClicked;
+
     private PlayerInputActions playerInput;
+
 
     void Start()
     {
@@ -24,31 +23,31 @@ public class InputController : MonoBehaviour
 
     private void ManageMouseInput(InputAction.CallbackContext context)
     {
+        RaycastHit hitInfo;
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (Physics.Raycast(ray, out hitInfo))
         {
             GameObject go = hitInfo.collider.gameObject;
 
             switch(go.tag)
             {
                 case "Item":
+                    Debug.Log("tag");
 					ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
 					OnItemPicked(ob);
 					DestroyImmediate(go);
                     break;
                 case "Enemy":
-                    Debug.Log("Walnieto przeciwnika - nie zaimplementowano jeszcze walki ;)");
+                    Debug.Log("Walnieto przeciwnika");
                     break;
-                case "Ground":
-                    Debug.Log("Ground hit: " + hitInfo.point.ToString());
-                    OnGroundMovement(hitInfo);
+                default:
+                    //OnGroundMovement();
                     break;
-                case "NPC":
-                    Dialogue dialogue = hitInfo.collider.gameObject.GetComponent<DialogueHolder>().GetCurrDialogue();
-                    Debug.Log(dialogue);
-                    OnDialogueStarted(dialogue);
-                    break;
+=======
+                
+>>>>>>> 5388309f6c1902fb30619745d125038705598836
+
             }
         }
     }
