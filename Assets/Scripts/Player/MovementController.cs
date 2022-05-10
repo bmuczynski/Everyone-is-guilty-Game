@@ -14,6 +14,9 @@ public class MovementController : MonoBehaviour
     private float moveDelay = 0.5f;
 
     [SerializeField]
+    private LayerMask groundLayer;
+
+    [SerializeField]
     private GameObject movementMarker;
 
     private void Awake()
@@ -69,7 +72,7 @@ public class MovementController : MonoBehaviour
                 Quaternion.identity);
 
             yield return new WaitForSeconds(moveDelay);
-
+            Debug.Log(hit.point.GetType().Name);
             animator.SetBool("isMoving", true);
             agent.SetDestination(hit.point);
         }
