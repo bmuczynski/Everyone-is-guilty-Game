@@ -23,6 +23,7 @@ public class MovementController : MonoBehaviour
         GetComponent<MainCharacter>().Dead += PlayDead ;
         //rajec
         agent = GetComponent<NavMeshAgent>();
+
         playerInput = new PlayerInputActions();
         playerInput.Player.Enable();
         playerInput.Player.Movement.performed += Move;
@@ -30,16 +31,14 @@ public class MovementController : MonoBehaviour
     // animator state change
     void PlayDead()
     {
-
         animator.SetBool("IsDead", true);
-
     }
 
     private void Update() => StopPlayer();
 
     private void OnDisable() => playerInput.Player.Movement.performed -= Move;
 
-    private void Move(InputAction.CallbackContext context) => StartCoroutine(WaitForMove());
+    public void Move(InputAction.CallbackContext context) => StartCoroutine(WaitForMove());
     
     private void StopPlayer()
     {
@@ -61,13 +60,12 @@ public class MovementController : MonoBehaviour
 
     private IEnumerator WaitForMove()
     {
-        RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out hit))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit))
         {
             DestroyAllGO("Marker");
-            GameObject go = Instantiate(movementMarker, 
-                hit.point, 
+            GameObject go = Instantiate(movementMarker,
+                hit.point,
                 Quaternion.identity);
 
             yield return new WaitForSeconds(moveDelay);

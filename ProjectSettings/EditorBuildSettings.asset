@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/JanScene.unity
     guid: a24aa4df8f53ce342b9f77710d2dbfb3
   - enabled: 1
-    path: Assets/Scenes/ProtasScene.unity
-    guid: e0707f0d73cf44c4ba846e5a0b4d1270
+    path: Assets/Scenes/MainScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

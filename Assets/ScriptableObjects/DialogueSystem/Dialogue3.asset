@@ -19,4 +19,4 @@ MonoBehaviour:
     text: asdwqe
   - npc: {fileID: 919132149155446097, guid: 647c75f41c6130249a088a37637a1cff, type: 3}
     text: 213
-  question: {fileID: 11400000, guid: c5a1116879ea07f4393ff3610be6c4a0, type: 2}
+  question: {fileID: 0}

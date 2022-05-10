@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
             dialogueContent.text = dialogue.question.text;
             questionController.Change(dialogue.question);
         }
-        else if (HasNextLine() && dialogue.question == null)
+        else if (!HasNextLine() && dialogue.question == null)
         {
             Debug.Log("Koniec dialogu");
             EndDialogue();
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour
     {
         index = 0;
         dialogue = null;
-        OnDialogueEnd();
+        //OnDialogueEnd();
         dialoguePanel.SetActive(false);
     }
 
@@ -109,7 +109,6 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueContent.text += fullText[i];
             yield return new WaitForSeconds(0.05f);
-            Debug.Log("Done");
         }
     }
 }
