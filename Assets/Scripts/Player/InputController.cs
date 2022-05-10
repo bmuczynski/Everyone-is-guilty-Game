@@ -32,6 +32,7 @@ public class InputController : MonoBehaviour
                 Debug.Log("tag");
                 ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
                 OnItemPicked(ob);
+                DestroyImmediate(go);
 
             }
         }
