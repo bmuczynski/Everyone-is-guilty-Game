@@ -15,4 +15,4 @@ MonoBehaviour:
   prefab: {fileID: 0}
   type: 0
   description: 
-  imageSprite: {fileID: 0}
+  imageSprite: {fileID: 21300000, guid: e3b22da985b7ff44fad70455ee9b9223, type: 3}

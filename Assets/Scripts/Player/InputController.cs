@@ -33,9 +33,10 @@ public class InputController : MonoBehaviour
             switch(go.tag)
             {
                 case "Item":
-                    ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
-                    OnItemPicked(ob);
-                    DestroyImmediate(go);
+                    Debug.Log("tag");
+					ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
+					OnItemPicked(ob);
+					DestroyImmediate(go);
                     break;
                 case "Enemy":
                     Debug.Log("Walnieto przeciwnika");
