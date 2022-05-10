@@ -21,7 +21,6 @@ public class ChoiceController : MonoBehaviour
     {
         int buttonSpacing = 45;
         Button button = Instantiate(choiceButtonTemplate);
-        Debug.Log(button.GetInstanceID());
         button.transform.SetParent(parent);
         button.transform.localScale = Vector3.one;
         button.transform.localPosition = new Vector3(0, index * buttonSpacing, 0);

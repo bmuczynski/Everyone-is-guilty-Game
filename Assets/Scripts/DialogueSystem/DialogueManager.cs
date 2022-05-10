@@ -78,6 +78,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        playerInputActions.UI.Enable();
         questionController.Hide();
         index = 0;
         this.dialogue = dialogue;
@@ -89,6 +90,7 @@ public class DialogueManager : MonoBehaviour
         index = 0;
         dialogue = null;
         //OnDialogueEnd();
+        playerInputActions.UI.Disable();
         dialoguePanel.SetActive(false);
     }
 

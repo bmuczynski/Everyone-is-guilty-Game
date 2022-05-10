@@ -43,7 +43,7 @@ public class MovementController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        //StartCoroutine(WaitForMove());
+        StartCoroutine(WaitForMove());
     }
 
     private void StopPlayer()
@@ -66,7 +66,6 @@ public class MovementController : MonoBehaviour
 
     private IEnumerator WaitForMove()
     {
-
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()), out RaycastHit hit))
         {
             DestroyAllGO("Marker");

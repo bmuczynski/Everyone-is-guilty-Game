@@ -8,6 +8,8 @@ public class InputController : MonoBehaviour
 {
 
     public event Action<ItemObject> OnItemPicked;
+    public event Action OnGroundMovement;
+    public event Action OnEnemyClicked;
 
     private PlayerInputActions playerInput;
 
@@ -27,11 +29,20 @@ public class InputController : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             GameObject go = hitInfo.collider.gameObject;
-            if (go.tag == "Item")
+
+            switch(go.tag)
             {
-                Debug.Log("tag");
-                ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
-                OnItemPicked(ob);
+                case "Item":
+                    ItemObject ob = hitInfo.collider.gameObject.GetComponent<Item>().item;
+                    OnItemPicked(ob);
+                    DestroyImmediate(go);
+                    break;
+                case "Enemy":
+                    Debug.Log("Walnieto przeciwnika");
+                    break;
+                default:
+                    //OnGroundMovement();
+                    break;
 
             }
         }
