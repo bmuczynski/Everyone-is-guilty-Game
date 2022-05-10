@@ -117,7 +117,7 @@ public class ZombieMovement : MonoBehaviour
                 SeePlayer = 1;
                 InvokeRepeating("speed", 2, 3);
                 PlayerInRange?.Invoke();
-                ZombieSound.Play();
+                //ZombieSound.Play();
 
 
 
