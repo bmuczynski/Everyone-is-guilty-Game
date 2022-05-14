@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 public class LocationHandler : MonoBehaviour
 {
     [SerializeField]
-    private Scene room;
+    private string locationToGo;
 
-    public Scene GetRoom()
+    public string GetRoomName()
     {
-        return this.room;
+        return this.locationToGo;
     }
-
-    
 }

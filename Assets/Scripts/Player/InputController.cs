@@ -11,6 +11,7 @@ public class InputController : MonoBehaviour
     public event Action<RaycastHit> OnGroundMovement;
     public event Action OnEnemyClicked;
     public event Action<Dialogue> OnDialogueStarted;
+    public event Action<string> OnRoomEntered;
 
     // Unity New Input System
     private PlayerInputActions playerInput;
@@ -47,10 +48,14 @@ public class InputController : MonoBehaviour
                 case "NPC":
                     Dialogue dialogue = hitInfo.collider.gameObject.GetComponent<DialogueHolder>().GetCurrDialogue();
                     Debug.Log(dialogue);
-                    OnDialogueStarted(dialogue);
+                    if(dialogue != null)
+                    {
+                        OnDialogueStarted(dialogue);
+                    }
                     break;
                 case "Door":
                     Debug.Log(go.name);
+                    OnRoomEntered(go.GetComponent<LocationHandler>().GetRoomName());
                     break;
             }
         }
