@@ -49,6 +49,9 @@ public class InputController : MonoBehaviour
                     Debug.Log(dialogue);
                     OnDialogueStarted(dialogue);
                     break;
+                case "Door":
+                    Debug.Log(go.name);
+                    break;
             }
         }
     }
