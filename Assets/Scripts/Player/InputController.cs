@@ -49,7 +49,6 @@ public class InputController : MonoBehaviour
                     Debug.Log("Walniêto przeciwnika - ale nie zaimplementowano jeszcze walki ;)");
                     break;
                 case "Ground":
-                    Debug.Log("Ground hit: " + hitInfo.point.ToString());
                     OnGroundMovement(hitInfo);
                     break;
                 case "NPC":
@@ -65,7 +64,6 @@ public class InputController : MonoBehaviour
                 case "Door":
                     if(distance <= interactionDistance)
                     {
-                        Debug.Log(go.name);
                         OnRoomEntered(go.GetComponent<LocationHandler>().GetRoomName());
                     }
                     break;

@@ -9,7 +9,6 @@ using UnityEngine.AI;
 public class MovementController : MonoBehaviour
 {
     private Animator animator;
-    private PlayerInputActions playerInput;
     private NavMeshAgent agent;
     private float moveDelay = 0.5f;
 
@@ -19,12 +18,13 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        //rajec
-        GetComponent<MainCharacter>().Dead += PlayDead;
-        //rajec
+        
         agent = GetComponent<NavMeshAgent>();
 
         GetComponent<InputController>().OnGroundMovement += Move;
+        //rajec
+        GetComponent<MainCharacter>().Dead += PlayDead;
+        //rajec
     }
     // animator state change
     void PlayDead()
@@ -44,7 +44,7 @@ public class MovementController : MonoBehaviour
 
     private void StopPlayer()
     {
-        if (agent.velocity == Vector3.zero)
+        if (agent.desiredVelocity == Vector3.zero) // NavMeshAgent.desiredVelocity a NavMeshAgent.velocity to jednak wielka ró¿nica :D
         {
             animator.SetBool("isMoving", false);
         }
@@ -73,6 +73,7 @@ public class MovementController : MonoBehaviour
             yield return new WaitForSeconds(moveDelay);
 
             animator.SetBool("isMoving", true);
+
             agent.SetDestination(hit.point);
     }
 }
