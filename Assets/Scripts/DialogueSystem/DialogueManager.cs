@@ -12,17 +12,19 @@ public class DialogueManager : MonoBehaviour
     private QuestionController questionController;
     private InputController inputController;
 
+    // UI
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueContent;
     private GameObject dialoguePanel;
 
     private PlayerInputActions playerInputActions;
 
+    public event Action<InputType> OnDialogueEvent;
+    public event Action OnDialogueEnd;
+
     private Line currentLine;
 
     private int index = 0;
-
-    public event Action OnDialogueEnd;
 
     void Start()
     {
@@ -31,14 +33,10 @@ public class DialogueManager : MonoBehaviour
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
         questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
         inputController = GameObject.Find("Player").GetComponent<InputController>();
-
+        dialoguePanel.SetActive(false);
         playerInputActions = new PlayerInputActions();
-        playerInputActions.UI.Enable();
         playerInputActions.UI.NextLine.performed += GoToNextLine;
         inputController.OnDialogueStarted += StartDialogue;
-
-        //gameObject.SetActive(false);
-
     }
 
     private void OnDisable()
@@ -81,6 +79,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        dialoguePanel.SetActive(true);
+        OnDialogueEvent(InputType.Dialogue);
+        playerInputActions.Player.Disable();
         playerInputActions.UI.Enable();
         questionController.Hide();
         index = 0;
@@ -92,8 +93,10 @@ public class DialogueManager : MonoBehaviour
     {
         index = 0;
         dialogue = null;
-        //OnDialogueEnd();
-        playerInputActions.UI.Disable();
+        OnDialogueEvent(InputType.Movement);
+        OnDialogueEnd();
+        //playerInputActions.UI.Disable();
+        Debug.Log(playerInputActions.UI.enabled);
         dialoguePanel.SetActive(false);
     }
 
