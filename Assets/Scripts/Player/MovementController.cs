@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
     private Animator animator;
     private NavMeshAgent agent;
     private float moveDelay = 0.5f;
+    private ParticleSystem particleSystem;
 
     [SerializeField]
     private GameObject movementMarker;
@@ -66,6 +67,7 @@ public class MovementController : MonoBehaviour
     private IEnumerator WaitForMove(RaycastHit hit)
     {
             DestroyAllGO("Marker");
+            
             GameObject go = Instantiate(movementMarker,
                 hit.point,
                 Quaternion.identity);
