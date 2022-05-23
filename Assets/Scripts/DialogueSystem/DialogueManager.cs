@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField]
     private Dialogue dialogue;
     private QuestionController questionController;
     private InputController inputController;

@@ -44,9 +44,15 @@ public class MovementController : MonoBehaviour
 
     private void StopPlayer()
     {
-        if (agent.desiredVelocity == Vector3.zero) // NavMeshAgent.desiredVelocity a NavMeshAgent.velocity to jednak wielka ró¿nica :D
+        if (!agent.pathPending)
         {
-            animator.SetBool("isMoving", false);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    animator.SetBool("isMoving", false);
+                }
+            }
         }
     }
 
@@ -68,13 +74,12 @@ public class MovementController : MonoBehaviour
             DestroyAllGO("Marker");
             
             GameObject go = Instantiate(movementMarker,
-                hit.point,
+                hit.point + new Vector3(0, 2, 0),
                 Quaternion.identity);
 
             yield return new WaitForSeconds(moveDelay);
 
             animator.SetBool("isMoving", true);
-
             agent.SetDestination(hit.point);
     }
 }
