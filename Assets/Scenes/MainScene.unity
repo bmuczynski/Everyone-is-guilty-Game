@@ -1714,7 +1714,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &565503947
 GameObject:
@@ -3311,7 +3311,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1360828981
 GameObject:
@@ -4133,9 +4133,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1274920481186170340, guid: 1a9feba67da303d47a27318aeae0500e, type: 3}
+      propertyPath: outlineMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3480777116268564524, guid: 1a9feba67da303d47a27318aeae0500e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3480777116268564524, guid: 1a9feba67da303d47a27318aeae0500e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4299,7 +4303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88dd92072c460e049a1f640007af23a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 4c5e695ff5bab604ea0a66950c0a1243, type: 2}
 --- !u!4 &2078701203
 Transform:
   m_ObjectHideFlags: 0

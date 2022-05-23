@@ -70,4 +70,19 @@ public class InputController : MonoBehaviour
             }
         }
     }
+
+    // w Update jest sprawdzane, czy mysz skierowana jest na przedmiot/npc/enemy - chyba lepsza opcja ni¿ update na ka¿dym objekcie w grze w sensie optymalizacji
+    private void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            if (hitInfo.collider.gameObject.GetComponent<BoxCollider>() != null)
+            {
+                Debug.Log("Mouse is over object: " + hitInfo.collider.name);
+                hitInfo.collider.gameObject.GetComponent<OutlineOverMouse>().isHovered = true;
+            }
+        }
+    }
 }

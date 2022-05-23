@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class OutlineOverMouse : MonoBehaviour
 {
-    private Outline outline;
+    public Outline outline;
+    public bool isHovered;
 
     // Start is called before the first frame update
     void Awake()
     {
         outline = GetComponent<Outline>();
-        outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+        outline.OutlineMode = Outline.Mode.OutlineHidden;
         SetOutlineColor();
         outline.OutlineWidth = 5.0f;
+
+        isHovered = false;
     }
 
     void SetOutlineColor()
@@ -33,9 +38,17 @@ public class OutlineOverMouse : MonoBehaviour
         }
     }
 
-    private void OnMouseOver()
+    private void Update()
     {
-        Debug.Log("Mouse is over object");
-        outline.OutlineMode = Outline.Mode.OutlineVisible;
+        if (isHovered)
+        {
+            outline.enabled = true;
+            outline.OutlineMode = Outline.Mode.OutlineAndSilhouette;
+            isHovered = false;
+        }
+        else if(!isHovered)
+        {
+            outline.enabled = false;
+        }
     }
 }
