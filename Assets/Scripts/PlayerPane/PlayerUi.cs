@@ -12,6 +12,9 @@ public class PlayerUi : MonoBehaviour
     private TextMeshProUGUI accuracyText;
     private TextMeshProUGUI dodgeText;
 
+    [SerializeField]
+    private float speed;
+
     void Start()
     {
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
@@ -34,10 +37,23 @@ public class PlayerUi : MonoBehaviour
         player.onHealthChanged -= UpdateHealthBar;
     }
 
-
     private void UpdateHealthBar(float currentHp)
     {
-        healthBar.value = currentHp;    
+        StopAllCoroutines();
+        StartCoroutine(SmoothBarFun(currentHp));
     }
 
+    // adding some smoothness to change of health bar value 
+    private IEnumerator SmoothBarFun(float amount)
+    {
+        float preChangeAmount = healthBar.value;
+        float elapsed = 0.0f;
+        while (elapsed < speed)
+        {
+            elapsed += Time.deltaTime;
+            healthBar.value = Mathf.Lerp(preChangeAmount, amount, speed);
+            yield return null;
+        }
+        healthBar.value = amount;
+    }
 }

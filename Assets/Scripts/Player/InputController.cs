@@ -78,10 +78,18 @@ public class InputController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
+
             if (hitInfo.collider.gameObject.GetComponent<BoxCollider>() != null)
             {
-                Debug.Log("Mouse is over object: " + hitInfo.collider.name);
-                hitInfo.collider.gameObject.GetComponent<OutlineOverMouse>().isHovered = true;
+                try
+                {
+                    hitInfo.collider.gameObject.GetComponent<OutlineOverMouse>().isHovered = true;
+
+                }
+                catch(NullReferenceException e)
+                {
+                    // do nothing
+                }
             }
         }
     }

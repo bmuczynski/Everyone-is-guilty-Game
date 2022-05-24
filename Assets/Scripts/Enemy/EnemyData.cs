@@ -22,4 +22,7 @@ public class EnemyData : ScriptableObject
 
     [Range(0, 10)]
     public int attackRange;
+
+    [Range(0, 1000)]
+    public int experienceValue;
 }

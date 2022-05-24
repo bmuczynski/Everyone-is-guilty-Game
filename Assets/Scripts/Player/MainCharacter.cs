@@ -10,6 +10,9 @@ public class MainCharacter : Character
 
     public event Action Dead; //->MovementController "Animacje"
 
+    public int experiencePoints;
+    public int characterLevel;
+
     private void Awake()
     {
         healthPoints = playerData.healthPoints;
@@ -17,7 +20,8 @@ public class MainCharacter : Character
         dodgeChance = playerData.dodgeChance;
         accuracy = playerData.accuracy;
         attack = 10.0f;
-        
+        experiencePoints = 0;
+        characterLevel = 1;
 
         Debug.Log("HP: " + maxHealthPoints + " \nDodge: " + dodgeChance);
     }
