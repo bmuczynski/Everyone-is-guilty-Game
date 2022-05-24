@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     private InputController inputController;
-    // Start is called before the first frame update
+
     void Start()
     {
         inputController = GameObject.Find("Player").GetComponent<InputController>();
         inputController.OnRoomEntered += LoadScene;
+        SceneManager.sceneLoaded += OnSceneChanged;
     }
 
     private void LoadScene(string sceneName)
@@ -25,4 +26,14 @@ public class SceneManagement : MonoBehaviour
         }
     }
 
+    private void OnSceneChanged(Scene scene, LoadSceneMode mode)
+    {
+        GameObject spawnPoint = GameObject.Find("SpawnPoint");
+
+        if (spawnPoint != null && scene.isLoaded)
+        {
+            Debug.Log("Jestem w scenie: " + scene.name);
+            GameObject.Find("Player").transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+        }
+    }
 }
