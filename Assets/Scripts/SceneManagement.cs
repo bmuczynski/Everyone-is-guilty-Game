@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class SceneManagement : MonoBehaviour
 {
@@ -33,7 +34,13 @@ public class SceneManagement : MonoBehaviour
         if (spawnPoint != null && scene.isLoaded)
         {
             Debug.Log("Jestem w scenie: " + scene.name);
-            GameObject.Find("Player").transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+            GameObject player = GameObject.Find("Player");
+            NavMeshAgent navMesh = player.GetComponent<NavMeshAgent>();
+
+            navMesh.enabled = false;
+            player.transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+            navMesh.enabled = true;
+            Debug.Break();
         }
     }
 }
