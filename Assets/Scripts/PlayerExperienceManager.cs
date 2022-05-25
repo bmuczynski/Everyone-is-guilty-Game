@@ -15,7 +15,7 @@ public class PlayerExperienceManager : MonoBehaviour
     void Start()
     {
         character = GetComponent<MainCharacter>();
-        enemyChar.OnDeadGiveExp += AddExperiencePoints;
+        //enemyChar.OnDeadGiveExp += AddExperiencePoints;
     }
 
     private void AddExperiencePoints(int experiencePoints)

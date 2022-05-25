@@ -49,7 +49,10 @@ public class InputController : MonoBehaviour
                     Debug.Log("Walniêto przeciwnika - ale nie zaimplementowano jeszcze walki ;)");
                     break;
                 case "Ground":
-                    OnGroundMovement(hitInfo);
+                    if(Movement.canMove)
+                    {
+                        OnGroundMovement(hitInfo);
+                    }
                     break;
                 case "NPC":
                     if(distance <= interactionDistance)
@@ -57,6 +60,8 @@ public class InputController : MonoBehaviour
                         Dialogue dialogue = hitInfo.collider.gameObject.GetComponent<DialogueHolder>().GetCurrDialogue();
                         if (dialogue != null)
                         {
+                            Debug.Log("ok");
+                            Movement.canMove = false;
                             OnDialogueStarted(dialogue);
                         }
                     }

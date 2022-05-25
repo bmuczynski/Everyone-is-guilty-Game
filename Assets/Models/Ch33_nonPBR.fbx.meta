@@ -11,7 +11,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ch33_body
-    second: {instanceID: 0}
+    second: {fileID: 2100000, guid: aa23e6dee57ca4046919e9bce71b2c1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ch33_hair
+    second: {fileID: 2100000, guid: c9fed1f980e93064ebb332cd997bc692, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

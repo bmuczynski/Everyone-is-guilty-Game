@@ -94,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         dialogue = null;
         OnDialogueEvent(InputType.Movement);
         OnDialogueEnd();
+        Movement.canMove = true;
         //playerInputActions.UI.Disable();
         Debug.Log(playerInputActions.UI.enabled);
         dialoguePanel.SetActive(false);
