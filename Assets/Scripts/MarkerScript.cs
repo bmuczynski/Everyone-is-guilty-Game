@@ -15,7 +15,7 @@ public class MarkerScript : MonoBehaviour
         StartCoroutine(DestroyAfterTime());
     }
 
-    private void Update() => MoveMarker();
+    //private void Update() => MoveMarker();
 
     // niszczenie objektu przy kontakcie z playerem - niszczenie znacznika (jedna z dwóch opcji)
     private void OnTriggerEnter(Collider other)
