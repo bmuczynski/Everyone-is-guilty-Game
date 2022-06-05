@@ -21,6 +21,9 @@ public class MovementController : MonoBehaviour
         
         agent = GetComponent<NavMeshAgent>();
 
+        Debug.Log(agent.obstacleAvoidanceType);
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
+
         GetComponent<InputController>().OnGroundMovement += Move;
         //rajec
         GetComponent<MainCharacter>().Dead += PlayDead;
@@ -74,11 +77,11 @@ public class MovementController : MonoBehaviour
             DestroyAllGO("Marker");
             
             GameObject go = Instantiate(movementMarker,
-                hit.point + new Vector3(0, 2, 0),
+                hit.point,
                 Quaternion.identity);
-
+            
             yield return new WaitForSeconds(moveDelay);
-
+            Debug.Log(hit.point + " " + hit.transform.rotation);
             animator.SetBool("isMoving", true);
             agent.SetDestination(hit.point);
     }
