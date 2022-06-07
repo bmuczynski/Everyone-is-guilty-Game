@@ -19,6 +19,8 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private float interactionDistance;
 
+    private Ray ray;
+
     void Start()
     {
         playerInput = new PlayerInputActions();
@@ -28,7 +30,7 @@ public class InputController : MonoBehaviour
 
     private void ManageMouseInput(InputAction.CallbackContext context)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
@@ -79,7 +81,7 @@ public class InputController : MonoBehaviour
     // w Update jest sprawdzane, czy mysz skierowana jest na przedmiot/npc/enemy - chyba lepsza opcja ni¿ update na ka¿dym objekcie w grze w sensie optymalizacji
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {

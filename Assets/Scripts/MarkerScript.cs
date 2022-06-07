@@ -10,26 +10,18 @@ public class MarkerScript : MonoBehaviour
     [SerializeField]
     private float timeForDestroy = 0.5f;
 
+    private Camera camera;
+
     private void Awake()
     {
+        camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+
         StartCoroutine(DestroyAfterTime());
     }
 
-    //private void Update() => MoveMarker();
-
-    // niszczenie objektu przy kontakcie z playerem - niszczenie znacznika (jedna z dwóch opcji)
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        //if(other.tag == "Player") GameObject.Destroy(gameObject);
-    }
-
-    private void MoveMarker()
-    {
-        float step = moveSpeed * Time.deltaTime;
-        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x,
-            1,
-            transform.position.z),
-            step);
+        //transform.LookAt(camera.transform, Vector3.up);
     }
 
     // coroutine to destroy object after some amount of time - musimy wybraæ co wolimy (propozycja Maæka)

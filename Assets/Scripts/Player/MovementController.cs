@@ -15,11 +15,17 @@ public class MovementController : MonoBehaviour
     [SerializeField]
     private GameObject movementMarker;
 
+    private GameObject go;
+
+    private Camera camera;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         
         agent = GetComponent<NavMeshAgent>();
+
+        camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
         Debug.Log(agent.obstacleAvoidanceType);
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.GoodQualityObstacleAvoidance;
@@ -74,15 +80,30 @@ public class MovementController : MonoBehaviour
 
     private IEnumerator WaitForMove(RaycastHit hit)
     {
-            DestroyAllGO("Marker");
-            
-            GameObject go = Instantiate(movementMarker,
-                hit.point,
-                Quaternion.identity);
-            
-            yield return new WaitForSeconds(moveDelay);
-            Debug.Log(hit.point + " " + hit.transform.rotation);
-            animator.SetBool("isMoving", true);
-            agent.SetDestination(hit.point);
+        DestroyAllGO("Marker");
+
+        InstantiateMarker(hit);
+
+        yield return new WaitForSeconds(moveDelay);
+
+        animator.SetBool("isMoving", true);
+        agent.SetDestination(hit.point);
+    }
+
+    private void InstantiateMarker(RaycastHit hit)
+    {
+        if(go == null)
+        {
+            go = Instantiate(movementMarker,
+                   hit.point,
+                   Quaternion.identity);
+        }
+        else
+        {
+            go.transform.position = hit.point;
+        }
+        go.transform.LookAt(camera.transform.position, Vector3.up);
+        go.transform.rotation = Quaternion.LookRotation(Vector3.up, Vector3.up); // make sure that our GO is always facing sky
+        
     }
 }
