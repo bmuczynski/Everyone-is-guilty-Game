@@ -20,10 +20,13 @@ public class DialogueManager : MonoBehaviour
 
     public event Action<InputType> OnDialogueEvent;
     public event Action OnDialogueEnd;
+    public event Action<bool> ChangeMusicVolume;
 
     private Line currentLine;
 
     private int index = 0;
+    private AudioClip clip;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -32,6 +35,7 @@ public class DialogueManager : MonoBehaviour
         dialogueContent = GameObject.Find("ContentText").GetComponent<TextMeshProUGUI>();
         questionController = GameObject.Find("ChoiceButtons").GetComponent<QuestionController>();
         inputController = GameObject.Find("Player").GetComponent<InputController>();
+        audioSource = GetComponent<AudioSource>();
         dialoguePanel.SetActive(false);
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.NextLine.performed += GoToNextLine;
@@ -55,6 +59,7 @@ public class DialogueManager : MonoBehaviour
         else if (!HasNextLine() && dialogue.question != null) // if there ain't another line after current line
         {
             StopAllCoroutines();
+            PlayAudioLine(dialogue.question.clip);
             characterNameText.text = "";
             dialogueContent.text = "";
             dialogueContent.text = dialogue.question.text;
@@ -66,7 +71,6 @@ public class DialogueManager : MonoBehaviour
             EndDialogue();
         }
     }
-
     private bool HasNextLine()
     {
         if (dialogue.lines.Length == index)
@@ -80,6 +84,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialoguePanel.SetActive(true);
         OnDialogueEvent(InputType.Dialogue);
+        ChangeMusicVolume(true);
         playerInputActions.Player.Disable();
         playerInputActions.UI.Enable();
         questionController.Hide();
@@ -87,30 +92,33 @@ public class DialogueManager : MonoBehaviour
         this.dialogue = dialogue;
         AdvanceLine();
     }
-
     private void EndDialogue()
     {
         index = 0;
         dialogue = null;
         OnDialogueEvent(InputType.Movement);
         OnDialogueEnd();
+        ChangeMusicVolume(false);
         Movement.canMove = true;
-        //playerInputActions.UI.Disable();
-        Debug.Log(playerInputActions.UI.enabled);
         dialoguePanel.SetActive(false);
     }
 
     private void AdvanceLine()
     {
         currentLine = dialogue.lines[index];
-        characterNameText.text = currentLine.npc.name;
+        characterNameText.text = currentLine.npcName;
+
+        clip = currentLine.dialogueClip;
+
+        PlayAudioLine(clip);
+
         StopAllCoroutines();
         StartCoroutine(TypeWrite(currentLine.text));
         index++;
     }
 
     // coroutine to make TypeWrite effect
-    public IEnumerator TypeWrite (string fullText)
+    public IEnumerator TypeWrite(string fullText)
     {
         dialogueContent.text = "";
         for (int i = 0; i < fullText.Length; i++)
@@ -118,5 +126,12 @@ public class DialogueManager : MonoBehaviour
             dialogueContent.text += fullText[i];
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    private void PlayAudioLine(AudioClip clip)
+    {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.PlayOneShot(clip);
     }
 }

@@ -14,6 +14,8 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField]
     private AudioClip[] audioClips;
     private AudioSource audioSource;
+
+    private float basicVolume;
     
     void Start()
     {
@@ -21,6 +23,8 @@ public class AudioPlayer : MonoBehaviour
         // subscribe event
         SceneManager.sceneLoaded += OnSceneLoaded;
         if(audioClips != null) PlayTheme(SceneManager.GetActiveScene());
+        GameObject.Find("DialogueManager").GetComponent<DialogueManager>().ChangeMusicVolume += SetMusicVolume;
+        basicVolume = audioSource.volume;
     }
 
     private void OnDisable()
@@ -60,6 +64,19 @@ public class AudioPlayer : MonoBehaviour
             case SoundType.UI:
                 // play sound button click
                 break;
+        }
+    }
+
+    private void SetMusicVolume(bool isOnDialogue)
+    {
+        float volumePercent = 0.1f;
+        if(isOnDialogue)
+        {
+            this.audioSource.volume = volumePercent;
+        }
+        else
+        {
+            this.audioSource.volume = basicVolume;
         }
     }
 }

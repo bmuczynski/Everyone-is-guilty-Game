@@ -16,4 +16,5 @@ public class Question : ScriptableObject
     [TextArea(2, 5)]
     public string text;
     public Choice[] choices;
+    public AudioClip clip;
 }

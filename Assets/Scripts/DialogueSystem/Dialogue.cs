@@ -5,9 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public struct Line
 {
-    public GameObject npc;
+    public string npcName;
     [TextArea(2,5)]
     public string text;
+    public AudioClip dialogueClip;
 }
 
 [CreateAssetMenu(fileName = "New Conversation", menuName = "Conversation/Dialogue")]
