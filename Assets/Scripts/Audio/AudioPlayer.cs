@@ -14,6 +14,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField]
     private AudioClip[] audioClips;
     private AudioSource audioSource;
+    public AudioSource soundEffectSource;
 
     private float basicVolume;
     
@@ -24,6 +25,7 @@ public class AudioPlayer : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         if(audioClips != null) PlayTheme(SceneManager.GetActiveScene());
         GameObject.Find("DialogueManager").GetComponent<DialogueManager>().ChangeMusicVolume += SetMusicVolume;
+        GameObject.Find("Player").GetComponent<InputController>().OnSoundTypeEntered += PlaySound;
         basicVolume = audioSource.volume;
     }
 
@@ -59,9 +61,12 @@ public class AudioPlayer : MonoBehaviour
         switch (type)
         {
             case SoundType.MOVEMENT:
+                Debug.Log("Gram dzwiek chodzenia");
+                soundEffectSource.PlayOneShot(audioClips[2]);
                 // play sound for click on ground
                 break;
             case SoundType.UI:
+                soundEffectSource.PlayOneShot(audioClips[3]);
                 // play sound button click
                 break;
         }

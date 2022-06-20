@@ -12,6 +12,7 @@ public class InputController : MonoBehaviour
     public event Action OnEnemyClicked;
     public event Action<Dialogue> OnDialogueStarted;
     public event Action<string> OnRoomEntered;
+    public event Action<SoundType> OnSoundTypeEntered;
 
     // Unity New Input System
     private PlayerInputActions playerInput;
@@ -54,6 +55,7 @@ public class InputController : MonoBehaviour
                     if(Movement.canMove)
                     {
                         OnGroundMovement(hitInfo);
+                        OnSoundTypeEntered(SoundType.MOVEMENT);
                     }
                     break;
                 case "NPC":
