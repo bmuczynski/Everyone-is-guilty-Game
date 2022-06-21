@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q14
+  m_EditorClassIdentifier: 
+  text: "Marius Nesteruk\u2026 To pewnie imi\u0119 w\u0142a\u015Bciciela budynku."
+  choices: []
+  clip: {fileID: 8300000, guid: b29d8e3e7465cbe4e9d5148b56624d5a, type: 3}

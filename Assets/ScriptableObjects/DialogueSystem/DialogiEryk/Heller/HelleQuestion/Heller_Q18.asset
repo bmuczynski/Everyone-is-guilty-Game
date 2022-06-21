@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q18
+  m_EditorClassIdentifier: 
+  text: "Spokojnie, nie zrobi\u0119 Panu krzywdy. Dlaczego schowa\u0142 si\u0119
+    Pan w szafie? Nie s\u0142ysza\u0142 Pan jak Pana wo\u0142a\u0142em?"
+  choices: []
+  clip: {fileID: 8300000, guid: c74b8cfaf1b9ac545908f9435725805b, type: 3}

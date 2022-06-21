@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q47
+  m_EditorClassIdentifier: 
+  text: "Dysk jest prawie kompletny, brakuje jednego elementu\u2026 P\xF3jd\u0119
+    do lokalnego szeryfa, mo\u017Ce on rzuci troch\u0119 \u015Bwiat\u0142a na spraw\u0119\u2026
+    w ko\u0144cu jego \u017Cona te\u017C jest na li\u015Bcie zaginionych."
+  choices: []
+  clip: {fileID: 8300000, guid: 8edd5d5f9562c8e45949d4f72a1e6690, type: 3}

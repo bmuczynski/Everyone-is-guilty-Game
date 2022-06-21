@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q8
+  m_EditorClassIdentifier: 
+  text: "W\u0142a\u015Bciciel chyba si\u0119 nie obrazi jak to sobie po\u017Cycz\u0119."
+  choices: []
+  clip: {fileID: 8300000, guid: 4112e36c17d8e47439a3e921434fe2ec, type: 3}

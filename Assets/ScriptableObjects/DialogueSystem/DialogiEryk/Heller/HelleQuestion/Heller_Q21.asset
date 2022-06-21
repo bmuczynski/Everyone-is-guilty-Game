@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q21
+  m_EditorClassIdentifier: 
+  text: "Hmmm\u2026 zaczn\u0119 od sprawdzenia miejsc w kt\xF3rych zaginieni byli
+    widziani po raz ostatni, oraz porozmawiam z ich bliskimi, mo\u017Ce oni b\u0119d\u0105
+    wiedzie\u0107 co\u015B wi\u0119cej.\r\nDzi\u0119kuje.\r"
+  choices: []
+  clip: {fileID: 8300000, guid: 1222e170b80e5014d8d038aa9c4f573d, type: 3}

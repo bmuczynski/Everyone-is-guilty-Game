@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Burmistrz_3
+  m_EditorClassIdentifier: 
+  text: "Z\u0142o zawita\u0142o do naszego miasteczka detektywie.\r\nCztery osoby
+    znikn\u0119\u0142y i nikt nie wie co si\u0119 z nimi sta\u0142o.\r"
+  choices: []
+  clip: {fileID: 8300000, guid: 8e5c1815c3f96ba4b893f8c914bc3856, type: 3}

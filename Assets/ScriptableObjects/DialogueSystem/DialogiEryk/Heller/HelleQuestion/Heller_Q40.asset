@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q40
+  m_EditorClassIdentifier: 
+  text: "Ciekawe czy jeszcze dzia\u0142a\u2026 zobaczmy co tu jest nagrane."
+  choices: []
+  clip: {fileID: 8300000, guid: a91e6e9b4811d6040b1d92dc9861b139, type: 3}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q45
+  m_EditorClassIdentifier: 
+  text: "Zaraza\u2026 zamkni\u0119te, czemu wszystko zawsze musi by\u0107 zamkni\u0119te\u2026
+    Ehhh musz\u0119 poszuka\u0107 klucza."
+  choices: []
+  clip: {fileID: 8300000, guid: cf51f660840042443aac76cfc9f0674c, type: 3}

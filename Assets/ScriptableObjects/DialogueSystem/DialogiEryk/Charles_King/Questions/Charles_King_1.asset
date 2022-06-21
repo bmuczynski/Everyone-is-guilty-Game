@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Charles_King_1
+  m_EditorClassIdentifier: 
+  text: "Michel, sprawa jest delikatna, wi\u0119c b\u0119d\u0119 z Tob\u0105 szczery.
+    W miejscowo\u015Bci Dove Creek w stanie Kolorado dosz\u0142o ostatnio do serii
+    zagini\u0119\u0107, miejscowi nie s\u0105 wstanie wyja\u015Bni\u0107 co si\u0119
+    tam dzieje. Ze wzgl\u0119du na stare czasy, prosz\u0119 ci\u0119 by\u015B pojecha\u0142
+    to sprawdzi\u0107. "
+  choices: []
+  clip: {fileID: 0}

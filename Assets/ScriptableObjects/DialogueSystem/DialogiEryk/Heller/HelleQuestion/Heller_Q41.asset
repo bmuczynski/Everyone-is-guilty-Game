@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Heller_Q41
+  m_EditorClassIdentifier: 
+  text: "Hmm\u2026 twardy zawodnik z tego technicznego, je\u017Celi nie odnajd\u0119
+    go ca\u0142ego i zdrowego, dopilnuje, by jego ostatnie \u017Cyczenie zosta\u0142o
+    spe\u0142nione."
+  choices: []
+  clip: {fileID: 8300000, guid: aeefd59a7ee70a94e808d94f219a7296, type: 3}

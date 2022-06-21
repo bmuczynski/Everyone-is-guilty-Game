@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Szeryf_1
+  m_EditorClassIdentifier: 
+  text: "Michael Heller\u2026 s\u0142ysza\u0142em, \u017Ce zajecha\u0142e\u015B do
+    miasta. Siadaj! Pogadamy sobie."
+  choices: []
+  clip: {fileID: 8300000, guid: eb642203bfbd0904e8a1eaf5599219d7, type: 3}

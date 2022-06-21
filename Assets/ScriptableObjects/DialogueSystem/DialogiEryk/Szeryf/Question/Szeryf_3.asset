@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Szeryf_3
+  m_EditorClassIdentifier: 
+  text: "Faktycznie podejrzana sprawa z tymi zagini\u0119ciami, pr\xF3bowa\u0142em
+    bada\u0107 je sam, ale niestety nie znalaz\u0142em \u017Cadnych poszlak.\r\nA
+    o moj\u0105 \u017Con\u0119 si\u0119 nie martw, faktycznie otrzyma\u0142a kilka
+    list\xF3w z pogr\xF3\u017Ckami, ale nic powa\u017Cnego. Na wszelki wypadek wys\u0142a\u0142em
+    j\u0105 do jej siostry.\r"
+  choices: []
+  clip: {fileID: 8300000, guid: 563385642ef4b7443a27fe4a72e2e3d7, type: 3}

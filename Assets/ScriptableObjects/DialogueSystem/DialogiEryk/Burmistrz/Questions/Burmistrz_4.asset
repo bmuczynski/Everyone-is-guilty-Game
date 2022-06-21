@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437c0f1545058d04dba4c56d1e66c247, type: 3}
+  m_Name: Burmistrz_4
+  m_EditorClassIdentifier: 
+  text: "Tak\u2026 tak\u2026 oczywi\u015Bcie.\r\nLokalny sprzedawca Pan Soul ostatni
+    raz by\u0142 widziany w swoim sklepie, gdy zosta\u0142em poinformowany o jego
+    znikni\u0119ciu poszed\u0142em to sprawdzi\u0107, lecz jedyne co znalaz\u0142em
+    to widoczne \u015Blady walki.\r\nPan Holmes, widzia\u0142 \u017Con\u0119 rano
+    jak wychodzi\u0142a na pastwisko. Jedyn\u0105 rzecz\u0105 jak\u0105 po niej znale\u017Ali\u015Bmy
+    by\u0142 szal jaki dosta\u0142a od niego na rocznic\u0119.\r\nNasz techniczny,
+    Pan Jackson zagin\u0105\u0142 w okolicy wiatraka, kt\xF3ry regularnie serwisowa\u0142.\r\nZagin\u0119\u0142a
+    r\xF3wnie\u017C \u017Cona naszego szeryfa Pana Clarka, wyjecha\u0142a w pi\u0105tek
+    do s\u0105siedniej wsi i wszelki s\u0142uch o niej zagin\u0105\u0142. \r"
+  choices: []
+  clip: {fileID: 8300000, guid: c067b99e37f99db4eb5e8d04dbfd9162, type: 3}
