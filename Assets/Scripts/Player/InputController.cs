@@ -75,8 +75,7 @@ public class InputController : MonoBehaviour
                     if(distance <= interactionDistance)
                     {
                         GameObject player = GameObject.Find("Player");
-                        
-                        Debug.Log(lastLocation);
+
                         NavMeshAgent navMesh = player.GetComponent<NavMeshAgent>();
 
                         navMesh.enabled = false;
