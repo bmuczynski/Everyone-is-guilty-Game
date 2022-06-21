@@ -23,7 +23,7 @@ public class SceneManagement : MonoBehaviour
         Debug.Log(previousLocation);
         if (SceneManager.GetSceneByName(sceneName) != null)
         {
-            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         }
         else
         {
@@ -33,20 +33,28 @@ public class SceneManagement : MonoBehaviour
 
     private void OnSceneChanged(Scene scene, LoadSceneMode mode)
     {
+        
         GameObject spawnPoint = GameObject.Find("SpawnPoint");
 
         if (spawnPoint != null && scene.isLoaded)
         {
             Debug.Log("Jestem w scenie: " + scene.name);
             GameObject player = GameObject.Find("Player");
+            //Destroy(player);
             NavMeshAgent navMesh = player.GetComponent<NavMeshAgent>();
 
             navMesh.enabled = false;
-            player.transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+            if(scene.name == "MainScene")
+            {
+                player.transform.SetPositionAndRotation(previousLocation, Quaternion.identity);
+            }
+            else
+            {
+                player.transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+            }
             
             //Debug.Break();
             navMesh.enabled = true;
-            Debug.Log("Teleport");
         }
     }
 }

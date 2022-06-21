@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
@@ -19,6 +20,7 @@ public class InputController : MonoBehaviour
 
     [SerializeField]
     private float interactionDistance;
+    private Vector3 lastLocation;
 
     private Ray ray;
 
@@ -73,7 +75,28 @@ public class InputController : MonoBehaviour
                 case "Door":
                     if(distance <= interactionDistance)
                     {
-                        OnRoomEntered(go.GetComponent<LocationHandler>().GetRoomName());
+                        Debug.Log("To drzwi");
+                        GameObject player = GameObject.Find("Player");
+                        
+                        Debug.Log(lastLocation);
+                        NavMeshAgent navMesh = player.GetComponent<NavMeshAgent>();
+
+                        navMesh.enabled = false;
+
+                        string locationName = go.GetComponent<LocationHandler>().GetRoomName();
+                        Debug.Log(locationName);
+                        if(locationName == "LastPlace")
+                        {
+                            player.transform.SetPositionAndRotation(lastLocation, Quaternion.identity);
+                        }
+                        else
+                        {
+                            lastLocation = player.transform.position;
+                            player.transform.SetPositionAndRotation(GameObject.Find(locationName).transform.position, Quaternion.identity);
+                        }
+                        navMesh.enabled = true;
+                        
+                        //OnRoomEntered(go.GetComponent<LocationHandler>().GetRoomName());
                     }
                     break;
             }
