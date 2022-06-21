@@ -17,7 +17,8 @@ public class AudioPlayer : MonoBehaviour
     public AudioSource soundEffectSource;
 
     private float basicVolume;
-    
+
+    private float speed = 0.2f;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -61,7 +62,6 @@ public class AudioPlayer : MonoBehaviour
         switch (type)
         {
             case SoundType.MOVEMENT:
-                Debug.Log("Gram dzwiek chodzenia");
                 soundEffectSource.PlayOneShot(audioClips[2]);
                 // play sound for click on ground
                 break;
@@ -81,7 +81,22 @@ public class AudioPlayer : MonoBehaviour
         }
         else
         {
-            this.audioSource.volume = basicVolume;
+            StopAllCoroutines();
+            StartCoroutine(LerpVolume(basicVolume));
         }
+    }
+
+    private IEnumerator LerpVolume(float finalAmount)
+    {
+        Debug.Log("Korutyna dzia³a");
+        float preChangeAmount = this.audioSource.volume;
+        float elapsed = 0.0f;
+        while (elapsed < speed)
+        {
+            elapsed += Time.deltaTime;
+            this.audioSource.volume = Mathf.Lerp(preChangeAmount, finalAmount, speed);
+            yield return null;
+        }
+        this.audioSource.volume = finalAmount;
     }
 }

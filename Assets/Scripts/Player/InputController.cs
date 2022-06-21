@@ -12,7 +12,7 @@ public class InputController : MonoBehaviour
     public event Action<RaycastHit> OnGroundMovement;
     public event Action OnEnemyClicked;
     public event Action<Dialogue> OnDialogueStarted;
-    public event Action<string> OnRoomEntered;
+    public event Action<GameObject> OnRoomEntered;
     public event Action<SoundType> OnSoundTypeEntered;
 
     // Unity New Input System
@@ -20,7 +20,6 @@ public class InputController : MonoBehaviour
 
     [SerializeField]
     private float interactionDistance;
-    private Vector3 lastLocation;
 
     private Ray ray;
 
@@ -74,26 +73,7 @@ public class InputController : MonoBehaviour
                 case "Door":
                     if(distance <= interactionDistance)
                     {
-                        GameObject player = GameObject.Find("Player");
-
-                        NavMeshAgent navMesh = player.GetComponent<NavMeshAgent>();
-
-                        navMesh.enabled = false;
-
-                        string locationName = go.GetComponent<LocationHandler>().GetRoomName();
-
-                        if(locationName == "LastPlace")
-                        {
-                            player.transform.SetPositionAndRotation(lastLocation, Quaternion.identity);
-                        }
-                        else
-                        {
-                            lastLocation = player.transform.position;
-                            player.transform.SetPositionAndRotation(GameObject.Find(locationName).transform.position, Quaternion.identity);
-                        }
-                        navMesh.enabled = true;
-                        
-                        //OnRoomEntered(go.GetComponent<LocationHandler>().GetRoomName());
+                        OnRoomEntered(go);
                     }
                     break;
             }

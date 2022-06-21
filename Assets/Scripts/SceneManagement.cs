@@ -13,7 +13,7 @@ public class SceneManagement : MonoBehaviour
     void Start()
     {
         inputController = GameObject.Find("Player").GetComponent<InputController>();
-        inputController.OnRoomEntered += LoadScene;
+        //inputController.OnRoomEntered += LoadScene;
         SceneManager.sceneLoaded += OnSceneChanged;
     }
 
