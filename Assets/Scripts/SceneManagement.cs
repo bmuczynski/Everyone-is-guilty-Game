@@ -8,6 +8,8 @@ public class SceneManagement : MonoBehaviour
 {
     private InputController inputController;
 
+    private Vector3 previousLocation;
+
     void Start()
     {
         inputController = GameObject.Find("Player").GetComponent<InputController>();
@@ -17,7 +19,9 @@ public class SceneManagement : MonoBehaviour
 
     private void LoadScene(string sceneName)
     {
-        if(SceneManager.GetSceneByName(sceneName) != null)
+        previousLocation = GameObject.Find("Player").GetComponent<Transform>().position;
+        Debug.Log(previousLocation);
+        if (SceneManager.GetSceneByName(sceneName) != null)
         {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
@@ -39,8 +43,10 @@ public class SceneManagement : MonoBehaviour
 
             navMesh.enabled = false;
             player.transform.SetPositionAndRotation(spawnPoint.transform.position, Quaternion.identity);
+            
+            //Debug.Break();
             navMesh.enabled = true;
-            Debug.Break();
+            Debug.Log("Teleport");
         }
     }
 }
