@@ -66,7 +66,6 @@ public class InputController : MonoBehaviour
                         Dialogue dialogue = hitInfo.collider.gameObject.GetComponent<DialogueHolder>().GetCurrDialogue();
                         if (dialogue != null)
                         {
-                            Debug.Log("ok");
                             Movement.canMove = false;
                             OnDialogueStarted(dialogue);
                         }
@@ -75,7 +74,6 @@ public class InputController : MonoBehaviour
                 case "Door":
                     if(distance <= interactionDistance)
                     {
-                        Debug.Log("To drzwi");
                         GameObject player = GameObject.Find("Player");
                         
                         Debug.Log(lastLocation);
@@ -84,7 +82,7 @@ public class InputController : MonoBehaviour
                         navMesh.enabled = false;
 
                         string locationName = go.GetComponent<LocationHandler>().GetRoomName();
-                        Debug.Log(locationName);
+
                         if(locationName == "LastPlace")
                         {
                             player.transform.SetPositionAndRotation(lastLocation, Quaternion.identity);
